@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { CartContext } from '../context/CartContext'; // Import CartContext
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { addToCart } = useContext(CartContext); // Get addToCart function from context
 
   useEffect(() => {
-    // Fetch products from Fake Store API
     fetch('https://fakestoreapi.com/products')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch products');
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
         setProducts(data);
         setLoading(false);
@@ -41,6 +37,7 @@ const Products = () => {
             <img src={product.image} alt={product.title} />
             <h3>{product.title}</h3>
             <p>${product.price}</p>
+            <button onClick={() => addToCart(product)}>Add to Cart</button> {/* Add to Cart Button */}
           </div>
         ))}
       </div>

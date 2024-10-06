@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { CartContext } from '../context/CartContext'; // Import CartContext
 
 const Cart = () => {
-  const [cartItems] = useState([
-    { id: 1, name: 'Product 1', quantity: 2, price: 100 },
-  ]);
+  const { cartItems } = useContext(CartContext); // Get cartItems from context
+
+  if (cartItems.length === 0) {
+    return <div>Your cart is empty</div>;
+  }
 
   return (
     <div>
       <h1>Your Cart</h1>
-      <ul>
+      <div className="cart-items">
         {cartItems.map((item) => (
-          <li key={item.id}>
-            {item.name} - {item.quantity} x ${item.price} = ${item.quantity * item.price}
-          </li>
+          <div key={item.id} className="cart-item">
+            <img src={item.image} alt={item.title} />
+            <h3>{item.title}</h3>
+            <p>${item.price}</p>
+          </div>
         ))}
-      </ul>
-      <p>Total: ${cartItems.reduce((total, item) => total + item.quantity * item.price, 0)}</p>
+      </div>
     </div>
   );
 };
