@@ -26,10 +26,8 @@ const Products = () => {
    
     </>
   );}
-  const setFilter = (category) => {
-    setFilter(category);
-  };
-
+  
+  
    
  
   export const ProductsFilter = () => {
