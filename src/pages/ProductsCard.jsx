@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom'; // Import Link for navigation
-import { CartContext } from '../context/CartContext';
-// Adjust the import path as necessary
+import { Link } from 'react-router-dom'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'; // Import the shopping cart icon
+import { CartContext } from '../context/CartContext'; // Adjust the import path as necessary
 
 function ProductsCard({ Items: products }) {
   const { addToCart } = useContext(CartContext); // Accessing the addToCart function from context
@@ -12,11 +13,16 @@ function ProductsCard({ Items: products }) {
       <div className="products-container">
         {products.map((product) => (
           <div key={product.id} className="product-card">
-            <img src={product.image} alt={product.title} />
+            <Link to={`/products/${product.id}`}>
+              <img src={product.image} alt={product.title} />
+            </Link>
             <h3>{product.title.substring(0, 30)}...</h3>
             <p>${product.price}</p>
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
-            <Link to={`/products/${product.id}`}>View Details</Link>
+            
+            {/* Replace the "Add to Cart" text with the cart icon */}
+            <button onClick={() => addToCart(product)}>
+              cart <FontAwesomeIcon icon={faShoppingCart} /> {/* Cart Icon */}
+            </button>
           </div>
         ))}
       </div>
