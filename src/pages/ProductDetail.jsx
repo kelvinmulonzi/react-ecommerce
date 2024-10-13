@@ -8,13 +8,22 @@ const ProductDetail = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log(`Fetching product with id: ${id}`);
     fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then((data) => {
+        console.log('Product data:', data);
         setProduct(data);
         setLoading(false);
+        console.log('Product:', product);
       })
       .catch((error) => {
+        console.error('Error fetching product:', error);
         setError(error.message);
         setLoading(false);
       });
