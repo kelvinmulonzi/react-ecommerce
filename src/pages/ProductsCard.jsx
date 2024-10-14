@@ -19,9 +19,10 @@ function ProductsCard({ Items: products }) {
             <h3>{product.title.substring(0, 30)}...</h3>
             <p>${product.price}</p>
             
-            {/* Replace the "Add to Cart" text with the cart icon */}
+            {}
             <button onClick={() => addToCart(product)}>
-              cart <FontAwesomeIcon icon={faShoppingCart} /> {/* Cart Icon */}
+              add to cart <FontAwesomeIcon icon={faShoppingCart} /> {}
+              {product.addedToCart && <span>Added to cart!</span>}
             </button>
           </div>
         ))}

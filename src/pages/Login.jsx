@@ -99,7 +99,6 @@ const StyledWrapper = styled.div`
     justify-content: center;
     max-width: 350px;
     background: #F8F9FD;
-    background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
     border-radius: 40px;
     padding: 25px 35px;
     border: 5px solid rgb(255, 255, 255);
