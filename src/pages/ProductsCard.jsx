@@ -27,6 +27,7 @@ function ProductsCard({ Items: products }) {
                 alert('Please log in to add items to the cart.');
               } else {
                 addToCart(product);
+                alert('Item added to cart!');
               }
             }}>
               add to cart <FontAwesomeIcon icon={faShoppingCart} />

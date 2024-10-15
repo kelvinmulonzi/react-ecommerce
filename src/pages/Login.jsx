@@ -95,10 +95,11 @@ const Login = () => {
   );
 }
 const StyledWrapper = styled.div`
-  display: flex;
+   display: flex;
   align-items: center;
-  justify-content: center;
+   justify-content: center;
   height: 100vh; /* Full viewport height to center vertically */
+  
 
   .container {
     display: flex;
@@ -106,7 +107,7 @@ const StyledWrapper = styled.div`
     align-items: center;
     justify-content: center;
     max-width: 350px;
-    background: #F8F9FD;
+    background: #001F3F;
     border-radius: 40px;
     padding: 25px 35px;
     border: 5px solid rgb(255, 255, 255);
