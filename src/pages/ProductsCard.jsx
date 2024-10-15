@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesomeIcon
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'; // Import the shopping cart icon
-import { CartContext } from '../context/CartContext'; // Adjust the import path as necessary
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'; 
+import { CartContext } from '../context/CartContext'; 
+import { AuthContext } from '../pages/AuthContext'; 
 
 function ProductsCard({ Items: products }) {
   const { addToCart } = useContext(CartContext); // Accessing the addToCart function from context
+  const { isLoggedIn } = useContext(AuthContext); // Accessing the isLoggedIn state from context
 
   return (
     <div className='ProductsCard'>
@@ -20,9 +22,14 @@ function ProductsCard({ Items: products }) {
             <p>${product.price}</p>
             
             {}
-            <button onClick={() => addToCart(product)}>
-              add to cart <FontAwesomeIcon icon={faShoppingCart} /> {}
-              {product.addedToCart && <span>Added to cart!</span>}
+            <button className='Cartbutton' onClick={() => {
+              if (!isLoggedIn) {
+                alert('Please log in to add items to the cart.');
+              } else {
+                addToCart(product);
+              }
+            }}>
+              add to cart <FontAwesomeIcon icon={faShoppingCart} />
             </button>
           </div>
         ))}

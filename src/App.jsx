@@ -8,6 +8,9 @@ import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import Login from './pages/Login';
 import { CartProvider } from './context/CartContext';
+import Signup from './pages/Signup';
+import { AuthProvider } from './pages/AuthContext';
+
 
 import './App.css';
 
@@ -16,8 +19,10 @@ function App() {
     <Router>
       <div className="App">
         <Header />
+        <AuthProvider>
         <CartProvider>
           <Routes>
+           <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/" element={<Home />} />
@@ -26,6 +31,7 @@ function App() {
           </Routes>
         </CartProvider>
         <Footer />
+        </AuthProvider>
       </div>
     </Router>
   );

@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { useState } from "react";
+import { AuthContext } from "./AuthContext"; // Import the AuthContext
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { logIn } = useContext(AuthContext); // Access logIn function from AuthContext
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    localStorage.setItem("email", email);
-    localStorage.setItem("password", password);
-    // Add your login logic here
+    e.preventDefault(); // Prevent form from reloading the page
+
+    // Simulated user data stored in localStorage (you might replace this with real backend logic)
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+
+    // Check if the user exists and the credentials match
+    if (storedUser && storedUser.email === email && storedUser.password === password) {
+      alert("Login successful!");
+      logIn(); // Call logIn to update global login state
+    } else {
+      alert("Invalid email or password. Please try again or sign up.");
+    }
   };
 
   return (
@@ -84,8 +93,7 @@ const Login = () => {
       </div>
     </StyledWrapper>
   );
-};
-
+}
 const StyledWrapper = styled.div`
   display: flex;
   align-items: center;

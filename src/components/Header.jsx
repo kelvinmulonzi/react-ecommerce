@@ -9,13 +9,14 @@ const Header = () => {
       <nav className='Navbar'>
         <ul>
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/products">Products</Link></li>
+          <li><Link to="/products">Shop</Link></li>
           <li>
             <Link to="/cart">
               Cart <FontAwesomeIcon icon={faShoppingCart} /> {/* Use the imported icon */}
             </Link>
           </li>
           <li><Link to="/login">Login</Link></li>
+          <li><Link to="/signup">Sign Up</Link></li>
         </ul>
       </nav>
     </header>
